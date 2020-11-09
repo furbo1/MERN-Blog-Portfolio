@@ -17,6 +17,10 @@ mongoose.connect(uri, {
     useUnifiedTopology: true
 });
 
+if(process.env.NODE_ENV === "production"){
+    app.use(express.static("client/build"))
+}
+
 const connection = mongoose.connection;
 connection.once('open', ()=>
 console.log("MongoDb connection established successfully"))
