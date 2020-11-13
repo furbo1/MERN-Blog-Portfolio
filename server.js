@@ -2,6 +2,8 @@ const express = require('express')
 const mongoose = require('mongoose')
 const cors = require('cors')
 
+const path = require('path')
+
 
 require('dotenv').config()
 const app = express()
@@ -17,9 +19,7 @@ mongoose.connect(uri, {
     useUnifiedTopology: true
 });
 
-if(process.env.NODE_ENV === "production"){
-    app.use(express.static("client/build"))
-}
+
 
 const connection = mongoose.connection;
 connection.once('open', ()=>
@@ -27,5 +27,13 @@ console.log("MongoDb connection established successfully"))
 
 const articlesRouter = require('./routes/articles')
 app.use('/articles', articlesRouter)
+
+if(process.env.NODE_ENV === "production"){
+    app.use(express.static("client/build"))
+
+    app.get("*", (req,res) => {
+        res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'))
+    })
+}
 
 app.listen(port, ()=> console.log(`The app is running on port: ${port}`))
