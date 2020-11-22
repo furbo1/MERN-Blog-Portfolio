@@ -1,4 +1,28 @@
 # MERN-Blog-Portfolio
+
+Technologies Used:
+
+Front-End
+
+    HTML5
+    CSS3
+    React.js
+
+Back-End
+
+    Node.js
+    Express.js
+    MongoDB
+
+
+NPM Packages
+
+    Create-React-App
+    Cors
+    Express
+    Dontenv
+    Mongoose
+    Multer
 This a fully functional React + Bootstrap blog. Users are able to add and modify articles.
 How to test:
 #Download the folder to your local machine
